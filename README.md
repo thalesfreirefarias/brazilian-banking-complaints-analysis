@@ -1,174 +1,153 @@
-## 📅 Progresso do Projeto
+# 📊 Análise de Reclamações no Setor Bancário Brasileiro
 
-### Dia 1 — Mapeamento da API do Banco Central ✅
+Projeto de análise de dados utilizando informações públicas do Banco Central
+do Brasil para estudar a evolução das reclamações relacionadas às instituições
+financeiras brasileiras entre 2017 e 2025.
 
-Primeiro contato com a API do Ranking de Reclamações do Banco Central para entender a estrutura e definir o recorte da análise.
+## 🎯 Objetivo
 
-Principais etapas:
+Analisar os dados públicos do Ranking de Reclamações do Banco Central,
+identificando padrões, evolução ao longo do tempo, instituições com maior
+volume de reclamações procedentes e possíveis mudanças no comportamento
+dos dados ao longo dos anos.
 
-- Exploração da API de Ranking de Reclamações do BCB;
-- Identificação dos anos e períodos disponíveis;
-- Estruturação dos períodos em DataFrame;
-- Análise das periodicidades disponíveis;
-- Definição do recorte do projeto.
+O projeto envolve coleta, tratamento, análise exploratória e visualização
+dos dados utilizando Python.
 
----
+## 🛠️ Tecnologias
 
-### Dia 2 — Coleta histórica de reclamações ✅
+- Python
+- Pandas
+- Requests
+- Matplotlib
+- Git/GitHub
 
-Automatização da coleta dos arquivos históricos disponibilizados pelo Banco Central.
+## 📂 Estrutura do projeto
 
-Principais etapas:
+- `src/` — scripts de coleta, tratamento, análise e visualização
+- `data/` — dados coletados e bases consolidadas
+- `outputs/` — gráficos gerados durante a análise
+- `notebooks/` — análises exploratórias
+- `dashboard/` — etapa futura de visualização em Power BI
 
-- Definição do período de análise a partir de 2017;
-- Seleção de Bancos e Financeiras;
-- Automatização da coleta trimestral via API;
-- Coleta de 37 períodos disponíveis entre 2017 e 2026;
-- Consolidação inicial de 5.060 registros;
-- Identificação de mudanças na estrutura dos arquivos ao longo dos anos;
-- Preservação dos dados brutos para tratamento posterior.
+## 🔎 Etapas do projeto
 
-Também foi identificada a ausência do 2º trimestre de 2022 na listagem de períodos retornada pela API.
+### Coleta e preparação dos dados
 
----
+Os dados foram obtidos a partir do Ranking de Reclamações disponibilizado
+pelo Banco Central do Brasil.
 
-### Dia 3 — Tratamento e consolidação dos dados ✅
+Foram identificados e coletados os períodos trimestrais disponíveis,
+consolidando os dados históricos em uma única base para análise.
 
-Os arquivos históricos apresentam estruturas diferentes dependendo do período analisado.
+A base consolidada contém informações como:
 
-Nesta etapa foi realizada a preparação necessária para criar uma base única e consistente para análise.
+- ano;
+- trimestre;
+- instituição financeira;
+- reclamações procedentes;
+- total de reclamações;
+- quantidade de clientes.
 
-Principais etapas:
+### Análise exploratória
 
-- Padronização dos nomes das colunas;
-- Tratamento das diferenças de estrutura entre os arquivos históricos;
-- Remoção de colunas desnecessárias;
-- Seleção das variáveis relevantes;
-- Conversão e tratamento dos dados;
-- Consolidação dos diferentes períodos em uma única base.
+A análise buscou identificar:
 
-A base final utilizada nas análises contém:
+- evolução anual das reclamações;
+- instituições com maior volume de reclamações procedentes;
+- comportamento das principais instituições ao longo do período;
+- mudanças relevantes na série histórica.
 
-- Ano;
-- Trimestre;
-- Instituição financeira;
-- Reclamações procedentes;
-- Total de reclamações;
-- Total de clientes.
+Durante a análise foi identificado um aumento expressivo das reclamações
+procedentes em 2024 e 2025.
 
----
+### Investigação do aumento das reclamações
 
-### Dia 4 — Análise exploratória dos dados ✅
+A série histórica apresentou:
 
-Com a base histórica consolidada, foi realizada uma análise exploratória das reclamações entre 2017 e 2026.
+- **2023:** 71.139 reclamações procedentes
+- **2024:** 165.083 reclamações procedentes
+- **2025:** 225.899 reclamações procedentes
 
-Foram analisados:
+Isso representa um crescimento de aproximadamente **132% entre 2023 e 2024**,
+seguido por novo crescimento de aproximadamente **37% em 2025**.
 
-- Evolução das reclamações ao longo dos anos;
-- Instituições com maior volume de reclamações;
-- Instituições com maior número de reclamações procedentes;
-- Evolução histórica das principais instituições;
-- Relação entre reclamações e tamanho da base de clientes.
+A análise por instituição mostrou que o movimento não ocorreu de forma
+uniforme entre os bancos, indicando a importância de analisar a evolução
+individual das instituições.
 
-### 🔎 Principais insights
+> O ano de 2026 não foi utilizado nas comparações anuais completas porque
+> os dados disponíveis correspondem apenas a uma parte do ano.
 
-- O volume de reclamações apresentou forte crescimento em 2024 e 2025;
-- Bradesco apresentou o maior número absoluto de reclamações procedentes em 2025;
-- Agibank apresentou destaque quando as reclamações foram normalizadas pelo número de clientes;
-- Os dados de 2026 representam um período ainda incompleto e, portanto, não devem ser comparados diretamente com anos completos.
+## 📈 Visualizações
 
-O crescimento observado em 2024 e 2025 levou à investigação realizada no Dia 5.
+### Evolução das reclamações procedentes
 
----
+![Evolução das reclamações procedentes](outputs/grafico_01_evolucao_procedentes.png)
 
-### Dia 5 — Investigação do aumento das reclamações ✅
+O gráfico evidencia a mudança de patamar observada principalmente a partir
+de 2024.
 
-A partir dos resultados da análise exploratória, foi investigado se o forte aumento das reclamações em 2024 e 2025 poderia ser explicado pelo crescimento da base de clientes das instituições.
+### Top 10 instituições em 2025
 
-### 📈 Evolução das reclamações
+![Top 10 instituições em 2025](outputs/grafico_02_top10_2025.png)
 
-A análise da variação anual mostrou que:
+O ranking permite identificar quais instituições apresentaram os maiores
+volumes de reclamações procedentes em 2025.
 
-- **2024:** +132,06%;
-- **2025:** +36,84%.
+### Evolução das principais instituições
 
-O ano de 2024 apresentou o maior crescimento anual de reclamações procedentes dentro do período analisado.
+![Evolução das principais instituições](outputs/grafico_03_evolucao_instituicoes.png)
 
-### 👥 Reclamações x crescimento da base de clientes
+A comparação histórica ajuda a verificar como diferentes instituições
+contribuíram para a evolução das reclamações ao longo do período.
 
-Foi comparada a evolução das reclamações com a evolução da base média de clientes das principais instituições.
+## 💡 Principais insights
 
-Os resultados mostraram que o crescimento da base de clientes, isoladamente, não é suficiente para explicar o aumento observado.
+- A série apresenta uma mudança significativa de patamar em 2024.
+- O número de reclamações procedentes passou de **71 mil em 2023 para 165 mil em 2024**.
+- Em 2025, o volume chegou a aproximadamente **226 mil reclamações procedentes**.
+- Bradesco apresentou o maior volume de reclamações procedentes em 2025.
+- A evolução varia significativamente entre as instituições, mostrando que o crescimento agregado não deve ser interpretado isoladamente.
+- Mudanças na estrutura dos dados do Banco Central ao longo da série também precisam ser consideradas na interpretação dos resultados.
 
-Em diversas instituições, as reclamações cresceram muito acima da variação da quantidade de clientes.
+## 🚀 Próxima etapa
 
-No Itaú, por exemplo, em 2024:
+A próxima etapa do projeto será a construção de um **dashboard em Power BI**
+para transformar os resultados da análise em uma visualização interativa,
+permitindo explorar períodos, instituições e indicadores.
 
-- Reclamações procedentes: **+117,89%**;
-- Base média de clientes: **-0,61%**.
+## ⚙️ Configuração do ambiente
 
-### 🏦 Instituições que mais contribuíram para o aumento
+Este projeto utiliza um ambiente virtual Python (`venv`) para isolar as
+dependências e garantir maior organização e reprodutibilidade.
 
-Em números absolutos, os maiores aumentos entre as instituições analisadas foram:
+### 1. Clonar o repositório
 
-**2024**
+```bash
+git clone https://github.com/thalesfreirefarias/churn-bancario-brasil.git
+cd churn-bancario-brasil
+```
 
-- Itaú: +7.275 reclamações;
-- Caixa: +7.239;
-- Agibank: +5.258.
+### 2. Criar o ambiente virtual
 
-**2025**
+```bash
+python3 -m venv .venv
+```
 
-- Bradesco: +11.925;
-- PicPay: +10.131;
-- Agibank: +7.305.
+### 3. Ativar o ambiente virtual
 
-A análise também demonstrou a importância de diferenciar crescimento percentual de crescimento absoluto.
+No macOS/Linux:
 
-### 📊 Reclamações por 100 mil clientes
+```bash
+source .venv/bin/activate
+```
 
-Para comparar instituições de diferentes tamanhos, foi calculada a quantidade de reclamações procedentes por 100 mil clientes.
+### 4. Instalar as dependências
 
-O Agibank apresentou a maior taxa entre as instituições analisadas:
+```bash
+pip install -r requirements.txt
+```
 
-- **2024:** 203,24 reclamações por 100 mil clientes;
-- **2025:** 248,35 reclamações por 100 mil clientes.
-
-O PicPay também apresentou crescimento relevante:
-
-- **2024:** 2,90;
-- **2025:** 18,37 reclamações por 100 mil clientes.
-
-A Caixa permaneceu praticamente estável:
-
-- **2024:** 9,28;
-- **2025:** 9,08.
-
-### 💡 Conclusão da investigação
-
-A análise identificou um forte crescimento das reclamações procedentes em 2024, com continuidade do aumento em 2025.
-
-O crescimento da base de clientes não foi suficiente para explicar esse movimento. Em diversas instituições, as reclamações cresceram muito acima da variação da quantidade de clientes.
-
-Além disso, o crescimento permaneceu relevante mesmo após a normalização das reclamações pelo tamanho da base.
-
-### ⚠️ Limitação da análise
-
-A base consolidada utilizada nesta versão do projeto não contém o motivo detalhado das reclamações.
-
-Portanto, os dados analisados não permitem determinar se o crescimento está relacionado a atendimento, produtos, fraudes, cobranças, canais digitais ou outros fatores.
-
-Uma versão futura do projeto poderá incorporar dados detalhados sobre os motivos das reclamações para aprofundar essa investigação.
-
----
-
-### Próxima etapa — Documentação e apresentação do projeto 🔄
-
-A próxima etapa será dedicada à finalização da primeira versão do projeto:
-
-- Revisão e organização do README;
-- Documentação da metodologia;
-- Organização dos scripts;
-- Apresentação dos principais resultados;
-- Documentação das limitações;
-- Definição de possíveis evoluções futuras do projeto.
+A pasta `.venv` não é versionada no GitHub. As dependências necessárias
+para reproduzir o ambiente são registradas no arquivo `requirements.txt`.
