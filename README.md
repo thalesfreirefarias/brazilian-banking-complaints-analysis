@@ -1,153 +1,298 @@
-# 📊 Análise de Reclamações no Setor Bancário Brasileiro
 
-Projeto de análise de dados utilizando informações públicas do Banco Central
-do Brasil para estudar a evolução das reclamações relacionadas às instituições
-financeiras brasileiras entre 2017 e 2025.
+# 📊 Brazilian Banking Complaints Analysis
 
-## 🎯 Objetivo
+### Central Bank Open Data | Python | Pandas | Exploratory Data Analysis
 
-Analisar os dados públicos do Ranking de Reclamações do Banco Central,
-identificando padrões, evolução ao longo do tempo, instituições com maior
-volume de reclamações procedentes e possíveis mudanças no comportamento
-dos dados ao longo dos anos.
+An end-to-end data analytics project exploring customer complaints against financial institutions in Brazil using publicly available data from the Central Bank of Brazil (BCB).
 
-O projeto envolve coleta, tratamento, análise exploratória e visualização
-dos dados utilizando Python.
+The project investigates historical trends, complaint volumes, differences across financial institutions, and significant changes observed between 2017 and 2025.
 
-## 🛠️ Tecnologias
+---
 
-- Python
-- Pandas
-- Requests
-- Matplotlib
-- Git/GitHub
+## 📌 Project Overview
 
-## 📂 Estrutura do projeto
+Customer complaints are an important indicator of service quality and potential operational challenges in the financial sector.
 
-- `src/` — scripts de coleta, tratamento, análise e visualização
-- `data/` — dados coletados e bases consolidadas
-- `outputs/` — gráficos gerados durante a análise
-- `notebooks/` — análises exploratórias
-- `dashboard/` — etapa futura de visualização em Power BI
+Analyzing these records can help identify patterns, monitor institutional performance, and support data-driven decisions.
 
-## 🔎 Etapas do projeto
+This project collects, processes, consolidates, and analyzes public banking complaints data using Python.
 
-### Coleta e preparação dos dados
+**Data source:** Central Bank of Brazil — Banking Complaints Ranking.
 
-Os dados foram obtidos a partir do Ranking de Reclamações disponibilizado
-pelo Banco Central do Brasil.
+**Analysis period:** 2017–2025.
 
-Foram identificados e coletados os períodos trimestrais disponíveis,
-consolidando os dados históricos em uma única base para análise.
+**Additional data:** Partial 2026 records may be available in the dataset but are excluded from full-year comparisons.
 
-A base consolidada contém informações como:
+> This project analyzes banking complaints, not actual customer churn or account closures.
 
-- ano;
-- trimestre;
-- instituição financeira;
-- reclamações procedentes;
-- total de reclamações;
-- quantidade de clientes.
+---
 
-### Análise exploratória
+## 🎯 Objectives
 
-A análise buscou identificar:
+- Collect historical complaints data from the Central Bank of Brazil.
+- Consolidate reporting periods into a structured dataset.
+- Analyze the evolution of complaints over time.
+- Identify financial institutions with the highest complaint volumes.
+- Investigate significant changes in the historical series.
+- Generate visualizations to communicate analytical findings.
+- Explore potential business implications for the banking sector.
 
-- evolução anual das reclamações;
-- instituições com maior volume de reclamações procedentes;
-- comportamento das principais instituições ao longo do período;
-- mudanças relevantes na série histórica.
+---
 
-Durante a análise foi identificado um aumento expressivo das reclamações
-procedentes em 2024 e 2025.
+## 🛠️ Technologies
 
-### Investigação do aumento das reclamações
+- **Python** — Data collection and analysis
+- **Pandas** — Data manipulation and aggregation
+- **Requests** — REST API integration
+- **Matplotlib** — Data visualization
+- **Git & GitHub** — Version control and project documentation
 
-A série histórica apresentou:
+---
 
-- **2023:** 71.139 reclamações procedentes
-- **2024:** 165.083 reclamações procedentes
-- **2025:** 225.899 reclamações procedentes
+## 📂 Project Structure
 
-Isso representa um crescimento de aproximadamente **132% entre 2023 e 2024**,
-seguido por novo crescimento de aproximadamente **37% em 2025**.
+```text
+churn-bancario-brasil/
+│
+├── data/
+│   └── Collected and consolidated datasets
+│
+├── src/
+│   ├── 01_coleta_dados.py
+│   ├── 02_coleta_reclamacoes.py
+│   ├── 03_coleta_dados_reclamacoes.py
+│   ├── 04_analise_exploratoria.py
+│   ├── 05_investigacao_reclamacoes.py
+│   └── 06_visualizacoes.py
+│
+├── outputs/
+│   └── Generated charts and visualizations
+│
+├── notebooks/
+│   └── Reserved for exploratory notebooks
+│
+├── sql/
+│   └── Reserved for SQL analysis
+│
+├── dashboard/
+│   └── Reserved for dashboard development
+│
+├── .gitignore
+├── requirements.txt
+└── README.md
+```
 
-A análise por instituição mostrou que o movimento não ocorreu de forma
-uniforme entre os bancos, indicando a importância de analisar a evolução
-individual das instituições.
+The numbered Python scripts organize the analytical workflow from data collection to visualization.
 
-> O ano de 2026 não foi utilizado nas comparações anuais completas porque
-> os dados disponíveis correspondem apenas a uma parte do ano.
+The `notebooks`, `sql`, and `dashboard` directories are included in the repository structure; their contents are not required for the findings documented here.
 
-## 📈 Visualizações
+---
 
-### Evolução das reclamações procedentes
+## 🔄 Data Analytics Workflow
 
-![Evolução das reclamações procedentes](outputs/grafico_01_evolucao_procedentes.png)
+### 1. Data Collection
 
-O gráfico evidencia a mudança de patamar observada principalmente a partir
-de 2024.
+The project accesses the Central Bank of Brazil's public complaints ranking API.
 
-### Top 10 instituições em 2025
+The initial collection script retrieves available years, reporting frequencies, periods, and categories.
 
-![Top 10 instituições em 2025](outputs/grafico_02_top10_2025.png)
+The information is transformed into a Pandas DataFrame and exported as a CSV file.
 
-O ranking permite identificar quais instituições apresentaram os maiores
-volumes de reclamações procedentes em 2025.
+### 2. Data Preparation
 
-### Evolução das principais instituições
+Historical reporting periods are collected and consolidated for analysis.
 
-![Evolução das principais instituições](outputs/grafico_03_evolucao_instituicoes.png)
+The resulting dataset includes information such as:
 
-A comparação histórica ajuda a verificar como diferentes instituições
-contribuíram para a evolução das reclamações ao longo do período.
+- Year and reporting period
+- Financial institution
+- Substantiated complaints
+- Total complaints
+- Number of customers
 
-## 💡 Principais insights
+### 3. Exploratory Data Analysis
 
-- A série apresenta uma mudança significativa de patamar em 2024.
-- O número de reclamações procedentes passou de **71 mil em 2023 para 165 mil em 2024**.
-- Em 2025, o volume chegou a aproximadamente **226 mil reclamações procedentes**.
-- Bradesco apresentou o maior volume de reclamações procedentes em 2025.
-- A evolução varia significativamente entre as instituições, mostrando que o crescimento agregado não deve ser interpretado isoladamente.
-- Mudanças na estrutura dos dados do Banco Central ao longo da série também precisam ser consideradas na interpretação dos resultados.
+The analysis focuses on:
 
-## 🚀 Próxima etapa
+- Annual complaint trends
+- Financial institutions with the highest complaint volumes
+- Historical changes across institutions
+- Significant variations in the aggregated data
 
-A próxima etapa do projeto será a construção de um **dashboard em Power BI**
-para transformar os resultados da análise em uma visualização interativa,
-permitindo explorar períodos, instituições e indicadores.
+### 4. Investigation and Visualization
 
-## ⚙️ Configuração do ambiente
+Additional analysis investigates the increase in substantiated complaints observed during 2024 and 2025.
 
-Este projeto utiliza um ambiente virtual Python (`venv`) para isolar as
-dependências e garantir maior organização e reprodutibilidade.
+Charts are generated to communicate the main findings and compare institutional trends.
 
-### 1. Clonar o repositório
+---
+
+## 📈 Key Findings
+
+### 1. Evolution of Substantiated Complaints
+
+The analysis identified a significant increase in substantiated complaints between 2023 and 2025.
+
+| Year | Substantiated Complaints | Annual Change |
+|------|-------------------------:|--------------:|
+| 2023 | 71,139 | — |
+| 2024 | 165,083 | +132.1% |
+| 2025 | 225,899 | +36.8% |
+
+Between 2023 and 2025, the reported number of substantiated complaints increased by approximately **217.5%**.
+
+![Evolution of Substantiated Complaints](outputs/grafico_01_evolucao_procedentes.png)
+
+The chart illustrates the change in the historical series, particularly from 2024 onward.
+
+### 2. Top 10 Financial Institutions in 2025
+
+The analysis compares financial institutions according to their total number of substantiated complaints in 2025.
+
+![Top 10 Financial Institutions in 2025](outputs/grafico_02_top10_2025.png)
+
+According to the project's findings, **Bradesco recorded the highest absolute volume of substantiated complaints in 2025**.
+
+Absolute complaint volumes should not be interpreted as a direct measure of service quality because financial institutions differ in customer base size and other characteristics.
+
+### 3. Historical Comparison Across Institutions
+
+The project also examines how complaint volumes evolved across major financial institutions.
+
+![Historical Evolution by Financial Institution](outputs/grafico_03_evolucao_instituicoes.png)
+
+The comparison indicates that the increase in complaints was not uniform across institutions.
+
+This highlights the importance of investigating institution-level trends rather than relying exclusively on aggregated totals.
+
+---
+
+## 💡 Business Insights
+
+### Customer Experience Monitoring
+
+Historical complaints data can support the identification of periods and institutions that may require additional investigation.
+
+### Operational Risk Analysis
+
+Significant changes in complaint volumes may help prioritize further analysis of operational processes and customer service.
+
+### Performance Benchmarking
+
+Comparisons across institutions can provide useful context, particularly when supported by normalized indicators such as complaints per customer.
+
+### Data-Driven Decision-Making
+
+Public regulatory data can complement internal operational indicators and support business intelligence initiatives.
+
+These are potential applications of the analysis, not validated outcomes of implemented business actions.
+
+---
+
+## ⚠️ Data Limitations
+
+The findings should be interpreted with the following considerations:
+
+- The dataset contains complaints registered through the Central Bank's reporting framework.
+- Absolute complaint volumes are influenced by the size and characteristics of each institution.
+- Changes in reporting methodology, institutional coverage, or data structure may affect historical comparisons.
+- An increase in recorded complaints does not necessarily establish a proportional deterioration in service quality.
+- Partial-year data should not be compared directly with complete annual totals.
+- Banking complaints are not equivalent to customer churn.
+
+The figures reported in this README reflect the project's documented analysis and should be revalidated against the consolidated dataset when the data is updated.
+
+---
+
+## ⚙️ Environment Setup
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/thalesfreirefarias/churn-bancario-brasil.git
 cd churn-bancario-brasil
 ```
 
-### 2. Criar o ambiente virtual
+### 2. Create a virtual environment
 
 ```bash
-python3 -m venv .venv
+python -m venv .venv
 ```
 
-### 3. Ativar o ambiente virtual
+### 3. Activate the environment
 
-No macOS/Linux:
+**Windows:**
+
+```bash
+.venv\Scripts\activate
+```
+
+**macOS / Linux:**
 
 ```bash
 source .venv/bin/activate
 ```
 
-### 4. Instalar as dependências
+### 4. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-A pasta `.venv` não é versionada no GitHub. As dependências necessárias
-para reproduzir o ambiente são registradas no arquivo `requirements.txt`.
+### 5. Explore the source code
+
+The numbered scripts are available in the `src/` directory.
+
+Start with:
+
+```text
+src/01_coleta_dados.py
+```
+
+This script identifies the reporting periods available through the Central Bank API and exports them to:
+
+```text
+data/periodos_ranking.csv
+```
+
+Additional scripts cover complaint data collection, exploratory analysis, investigation, and visualization.
+
+Execution of the full workflow may require checking local file paths and the current availability of the API.
+
+---
+
+## 🔗 Data Source
+
+**Central Bank of Brazil (BCB)**
+
+Public Banking Complaints Ranking API:
+
+https://www3.bcb.gov.br/rdrweb/rest/ext/ranking
+
+The Central Bank is the source of the public data. The analysis and interpretations presented here are part of an independent portfolio project.
+
+---
+
+## 🚀 Future Improvements
+
+- Expand data validation and reproducibility checks.
+- Explore normalized complaint indicators.
+- Document potential structural changes in the historical series.
+- Connect the analytical findings to an interactive dashboard.
+- Extend the analysis as new reporting periods become available.
+
+---
+
+## 👨‍💻 Author
+
+**Thales Farias**
+
+Data Analytics | Business Intelligence | Financial Services
+
+📍 São Paulo, Brazil
+
+[GitHub](https://github.com/thalesfreirefarias)
+
+---
+
+*Transforming public financial data into meaningful analytical insights.*
